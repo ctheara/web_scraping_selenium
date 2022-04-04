@@ -7,6 +7,9 @@
 .correct {
     color: green
 }
+.wrong {
+    color: red
+}
 </style>
 
 </head>
@@ -17,7 +20,7 @@ Enter integers separated by commas:
 
 <input type = 'text' id = 'numbers' onkeyup = 'clearAnswer()'></input>
 <button id = 'btnAdd' onclick = 'addNumbers()'>Add Numbers </button>
-<button id = 'btnReset'>Reset</button>
+<button id = 'btnReset'  onclick = 'reset()'>Reset</button>
 
 <br><br><br>
 <div id = 'answer' style='font-weight:bold'></div>
@@ -28,6 +31,12 @@ Enter integers separated by commas:
 function clearAnswer() {
     div = document.getElementById('answer');
     div.innerHTML = '';
+}
+
+function reset(){
+    div = document.getElementById('answer');
+    div.innerHTML = '';
+    document.getElementById('numbers').value = '';
 }
 
 // gets numbers from text input and converts to an 
@@ -42,6 +51,8 @@ function getNumberArray() {
            x = Number(numStrArray[i]);
            if (isNaN(x)) {
                 msg = 'Error: at least one value is not an integer';
+                megW = document.getElementById('answer')
+                megW.className = "wrong";
                 document.getElementById("answer").innerHTML = msg;
                 return undefined;
            }
